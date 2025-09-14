@@ -116,6 +116,9 @@ router.post("/", verifySupabaseToken,async (req, res) => {
 
 // Stripe webhook to confirm payments
 export async function webhookHandler(req, res) {
+  console.log("Stripe webhook received:", req.body);
+console.log("Stripe event type:", req.body.type || (req.body.data && req.body.data.object && req.body.data.object.object));
+
   let event;
   try {
     event = stripe.webhooks.constructEvent(
@@ -132,6 +135,8 @@ export async function webhookHandler(req, res) {
 
   // Payment successful => update Supabase payments
   if (event.type === "payment_intent.succeeded") {
+    console.log("Processing payment_intent.succeeded for ID:", event.data.object.id);
+
       const paymentIntent = event.data.object;
       const rideId = paymentIntent.metadata.ride_id;
       const riderId = paymentIntent.metadata.rider_id;
@@ -169,11 +174,16 @@ export async function webhookHandler(req, res) {
         }
 
         if (ride?.driver_id) {
+          try{
           await supabase.rpc("increment_driver_earnings", {
             
             driver_id: ride.driver_id,
             fare: ride.fare,
           });
+          console.log("Driver earnings incremented successfully");
+        } catch (rpcError) {
+          console.error("Error incrementing driver earnings:", rpcError);
+        }
         }
 
         console.log("Payment + ride update completed successfully ✅");
