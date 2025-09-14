@@ -36,19 +36,6 @@ out/
 Thumbs.db
 Desktop.ini
 
-# Public uploads/static assets
-public/uploads/
-public/*-uploads/
-public/*.tmp
-public/*.log
-
-# Optional: compiled PDFs/thumbnails/assets
-*.pdf
-*.png
-*.jpg
-*.jpeg
-*.webp
-*.gif
 
 # Ignore test output
 test-output/
