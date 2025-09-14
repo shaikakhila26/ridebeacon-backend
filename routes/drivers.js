@@ -34,12 +34,17 @@ router.post("/:id/connect-stripe", async (req, res) => {
       .update({ stripe_account_id: account.id })
       .eq("id", driver_id);
 
-    const link = await stripe.accountLinks.create({
-      account: account.id,
-      refresh_url: "http://localhost:5173/driver/stripe/failed",
-      return_url: "http://localhost:5173/driver/stripe/success",
-      type: "account_onboarding",
-    });
+      const refreshUrl = `${process.env.FRONTEND_URL}/driver/stripe/failed`;
+const returnUrl = `${process.env.FRONTEND_URL}/driver/stripe/success`;
+
+const link = await stripe.accountLinks.create({
+  account: account.id,
+  refresh_url: refreshUrl,
+  return_url: returnUrl,
+  type: "account_onboarding",
+});
+
+    
 
     res.json({ url: link.url });
   } catch (err) {
