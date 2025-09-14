@@ -276,11 +276,14 @@ const fullRide = { ...ridedata, rider : riderWithEmail ,driver:driverWithEmail};
 
           if (data?.signedUrl) {
 console.log("Receipt signed URL:", data.signedUrl);
-
+try{
             await sendRideReceiptEmail(fullRide.rider.email, data.signedUrl);
 
             console.log(`Receipt email sent to ${fullRide.rider.email}`);
-
+}
+catch(emailError){
+  console.error(`Failed to send receipt email to ${fullRide.rider.email}:`, emailError);
+}
           } else {
 
             console.error('Failed to generate signed URL for receipt');

@@ -17,6 +17,8 @@ const transporter = nodemailer.createTransport({
  * @param {string} signedUrl - direct Supabase signed URL (full URL with token)
  */
 export async function sendRideReceiptEmail(toEmail, signedUrl) {
+  console.log('Attempting to send ride receipt email to:', toEmail);
+  console.log('Signed URL:', signedUrl);
   const mailOptions = {
     from: '"RideBeacon" <no-reply@ridebeacon.com>',
     to: toEmail,
@@ -33,7 +35,7 @@ export async function sendRideReceiptEmail(toEmail, signedUrl) {
 
   try {
     const info = await transporter.sendMail(mailOptions);
-    console.log("Email sent: " + info.messageId);
+    console.log("Email sent , messageId: " + info.messageId);
   } catch (error) {
     console.error("Error sending email:", error);
     throw error;
