@@ -1,0 +1,78 @@
+# Node.js dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+pnpm-lock.yaml
+
+# Environment variables and secrets
+.env
+.env.local
+.env.production
+.env.development
+.env.test
+.env.*
+
+# Build output and temp files
+dist/
+build/
+tmp/
+temp/
+.cache/
+.coverage/
+.next/
+out/
+*.log
+
+# IDE/editor/project files
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# OS generated files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Public uploads/static assets
+public/uploads/
+public/*-uploads/
+public/*.tmp
+public/*.log
+
+# Optional: compiled PDFs/thumbnails/assets
+*.pdf
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.gif
+
+# Ignore test output
+test-output/
+coverage/
+*.lcov
+
+# Ignore exports/backups
+*.sql
+*.dump
+*.bak
+
+# Ignore custom scripts/output
+check-ip.js
+*.out
+*.pid
+
+# Ignore anything marked secret
+*secret*
+*key*
+
+# Misc user files
+*.swp
+*.tmp
+*.bak
+
+# Ignore IDE launch configs
+launch.json
