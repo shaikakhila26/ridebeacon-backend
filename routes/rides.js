@@ -14,7 +14,7 @@ const __dirname = path.dirname(__filename);
 
 
 const BASE_FARE = 25; // Rs
-const RATE_PER_KM = 12; // Rs per km
+const RATE_PER_KM = 7; // Rs per km
 const RIDE_TYPE_MULTIPLIERS = {
   Standard: 1,
   Premium: 1.5,
