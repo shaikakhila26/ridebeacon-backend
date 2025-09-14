@@ -116,6 +116,7 @@ router.post("/", verifySupabaseToken,async (req, res) => {
 
 // Stripe webhook to confirm payments
 export async function webhookHandler(req, res) {
+  console.log("Raw webhook body:",req.body.toString());
   console.log("Stripe webhook received:", req.body);
 console.log("Stripe event type:", req.body.type || (req.body.data && req.body.data.object && req.body.data.object.object));
 
